@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const HomeSale = () => {
   const navigate = useNavigate();
@@ -25,16 +27,25 @@ const HomeSale = () => {
     },
   ];
 
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <div className="bg-gray-100 py-12 sm:py-16 px-4 sm:px-6 lg:px-12">
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center uppercase mb-10 sm:mb-12">
+      <h2
+        data-aos="fade-down"
+        className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center uppercase mb-10 sm:mb-12"
+      >
         Properties for Sale
       </h2>
       <div className="flex flex-col gap-10 sm:gap-12 max-w-5xl mx-auto">
         {properties.map((property, index) => (
           <div
             key={index}
-            className={`flex flex-col md:flex-row items-center gap-6 sm:gap-8 ${
+            data-aos="fade-up"
+            data-aos-delay={index * 200}
+            className={`flex flex-col md:flex-row items-center gap-6 sm:gap-8 transform transition-transform duration-300 hover:scale-105 ${
               index % 2 !== 0 ? 'md:flex-row-reverse' : ''
             }`}
           >

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Agent = () => {
   const agents = [
@@ -28,6 +30,10 @@ const Agent = () => {
     },
   ];
 
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <div
       className="w-full bg-cover bg-black/50 py-12 sm:py-16 px-4 sm:px-6 md:px-12"
@@ -36,11 +42,18 @@ const Agent = () => {
           "url('https://static.wixstatic.com/media/f61af8_8d4ef4b5b5314f8abeaad987dd13e1c4.jpg/v1/fill/w_1883,h_1005,al_b,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/f61af8_8d4ef4b5b5314f8abeaad987dd13e1c4.jpg')",
       }}
     >
-      <h1 className="text-3xl sm:text-4xl md:text-5xl text-[#0B132B] text-center font-bold mb-6">
+      <h1
+        data-aos="fade-down"
+        className="text-3xl sm:text-4xl md:text-5xl text-[#0B132B] text-center font-bold mb-6"
+      >
         Our Agents
       </h1>
 
-      <p className="text-[#1d3682] text-center max-w-3xl mx-auto mb-10 sm:mb-12 text-sm sm:text-base md:text-lg leading-relaxed">
+      <p
+        data-aos="fade-up"
+        data-aos-delay="200"
+        className="text-[#1d3682] text-center max-w-3xl mx-auto mb-10 sm:mb-12 text-sm sm:text-base md:text-lg leading-relaxed"
+      >
         At the heart of our success is a team of dedicated professionals committed to helping you
         find the perfect property. Our agents bring years of industry experience, deep market
         knowledge, and a passion for real estate. Whether you're buying, selling, or renting, they
@@ -53,6 +66,8 @@ const Agent = () => {
         {agents.map((agent, index) => (
           <div
             key={index}
+            data-aos="fade-up"
+            data-aos-delay={index * 200} // stagger animations
             className="bg-white rounded-lg shadow-lg overflow-hidden w-full sm:w-80 md:w-72 lg:w-80"
           >
             <img

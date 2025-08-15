@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const HomeRental = () => {
   const navigate = useNavigate();
@@ -31,14 +33,26 @@ const HomeRental = () => {
     },
   ];
 
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <div className="bg-white py-12 sm:py-16 px-4 sm:px-6 lg:px-12">
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center uppercase mb-10 sm:mb-12">
+      <h2
+        data-aos="fade-down"
+        className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center uppercase mb-10 sm:mb-12"
+      >
         Latest Rental Properties
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 max-w-6xl mx-auto">
         {rentals.map((rental, index) => (
-          <div key={index} className="space-y-3 sm:space-y-4">
+          <div
+            key={index}
+            data-aos="fade-up"
+            data-aos-delay={index * 200} // stagger each card
+            className="space-y-3 sm:space-y-4 transform transition-transform duration-300 hover:scale-105"
+          >
             <img
               src={rental.image}
               alt={rental.title}
@@ -47,7 +61,9 @@ const HomeRental = () => {
             />
             <div>
               <p className="font-semibold text-sm sm:text-base">{rental.bedrooms} bedrooms</p>
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold uppercase mb-1 sm:mb-2">{rental.title}</h3>
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold uppercase mb-1 sm:mb-2">
+                {rental.title}
+              </h3>
               <p className="text-gray-700 text-xs sm:text-sm mb-1 sm:mb-2">
                 I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click
                 “Edit Text” or double click me to add your own content and make changes to the font.

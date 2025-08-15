@@ -32,6 +32,23 @@ const rentals = [
     title: "OSTERLEY AVENUE",
     desc: "Luxury property with modern amenities.",
   },
+  {
+    id: 5,
+    img: "https://images.pexels.com/photos/9944430/pexels-photo-9944430.jpeg",
+    price: "$550 P/W",
+    beds: "4 bedrooms",
+    title: "MAPLE STREET VILLA",
+    desc: "Elegant villa featuring a modern kitchen, spacious living areas, and a private garden.",
+  }
+  ,
+  {
+    id: 6,
+    img: "https://images.pexels.com/photos/24739867/pexels-photo-24739867.jpeg",
+    price: "$450 P/W",
+    beds: "3 bedrooms",
+    title: "RIVERSIDE APARTMENT",
+    desc: "Contemporary apartment with stunning river views, large balcony, and premium amenities.",
+  }
 ];
 
 export default rentals;

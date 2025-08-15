@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { sales } from "../pages/Sales";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const SalesProperty = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const propertyIndex = sales.findIndex(p => p.id === parseInt(id));
+  const propertyIndex = sales.findIndex((p) => p.id === parseInt(id));
   const property = sales[propertyIndex];
   const [imgIndex, setImgIndex] = useState(0);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
 
   if (!property) {
     return <p className="text-center py-20">Property not found</p>;
@@ -23,7 +29,10 @@ const SalesProperty = () => {
       </button>
 
       <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start md:items-center">
-        <div className="w-full md:w-1/2 relative">
+        <div
+          data-aos="fade-right"
+          className="w-full md:w-1/2 relative"
+        >
           <img
             src={property.images[imgIndex]}
             alt={property.title}
@@ -49,7 +58,11 @@ const SalesProperty = () => {
           )}
         </div>
 
-        <div className="w-full md:w-1/2 text-center md:text-left mt-4 md:mt-0">
+        <div
+          data-aos="fade-left"
+          data-aos-delay="200"
+          className="w-full md:w-1/2 text-center md:text-left mt-4 md:mt-0"
+        >
           <h1 className="text-2xl sm:text-3xl lg:text-3xl font-bold mb-3">{property.title}</h1>
           <p className="text-gray-500 text-sm sm:text-base mb-2">{property.bedrooms} bedrooms</p>
           <p className="text-gray-700 text-sm sm:text-base">{property.description}</p>
